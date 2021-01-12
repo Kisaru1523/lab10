@@ -2,6 +2,7 @@
 #include<string>
 #include<cstdlib>
 #include<ctime>
+
 using namespace std;
 
 string cardNames[] = {"","A","2","3","4","5","6","7","8","9","10","J","Q","K"};
@@ -11,6 +12,7 @@ int drawCard(void){
 	int x=rand()%13+1;
 	return x;
 }
+	
 int calScore(int x,int y,int z){
 	int sum=cardScores[x]+cardScores[y]+cardScores[z];
 	int score;
@@ -25,7 +27,7 @@ int findYugiAction(int s){
 	if(s == 9) return 2; 
 	else if(s < 6) return 1; 
 	else{
-		if((rand()%100)+1<=69)
+		if((rand()%100+1)<=69)
 		{
 			return 1;
 		}else{
@@ -49,6 +51,7 @@ void checkWinner(int p, int y){
 	cout << "\n---------------------------------\n";
 }
 int main(){	
+	srand(time(0));
 	int playerScore, yugiScore, playerAction, yugiAction;
 	int playerCards[3] = {drawCard(),drawCard(),0};
 	int yugiCards[3]  = {drawCard(),drawCard(),0}; 
@@ -78,7 +81,7 @@ int main(){
 	if(yugiAction == 1){
 		cout << "Yugi draws the 3rd card!!!\n";
 		yugiCards[2] = drawCard();
-		cout << "Yugi 3rd card: " << cardNames[yugiCards[2]] << "\n";
+		cout << "Yugi's 3rd card: " << cardNames[yugiCards[2]] << "\n";
 		yugiScore = calScore(yugiCards[0],yugiCards[1],yugiCards[2]);
 		cout << "Yugi's new score: " <<yugiScore<< "\n";
 	}
